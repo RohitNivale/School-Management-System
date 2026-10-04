@@ -1,8 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import { Bell, CalendarCheck, GraduationCap, LogOut, Award, TrendingUp, UserRound } from "lucide-react";
-
-const API = import.meta.env.VITE_API_URL ;
+import { API_URL } from "../api";
 
 export default function StudentDashboard() {
   const token = localStorage.getItem("token");
@@ -19,10 +18,10 @@ export default function StudentDashboard() {
   const load = async () => {
     try {
       const [a, r, p, n] = await Promise.all([
-        axios.get(`${API}/attendance/student/${studentId}`, { headers }),
-        axios.get(`${API}/results/student/${studentId}`, { headers }),
-        axios.get(`${API}/progress/student/${studentId}`, { headers }),
-        axios.get(`${API}/notices`, { headers })
+        axios.get(`${API_URL}/attendance/student/${studentId}`, { headers }),
+        axios.get(`${API_URL}/results/student/${studentId}`, { headers }),
+        axios.get(`${API_URL}/progress/student/${studentId}`, { headers }),
+        axios.get(`${API_URL}/notices`, { headers })
       ]);
       setAttendance(a.data);
       setResults(r.data);

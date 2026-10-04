@@ -4,8 +4,7 @@ import {
   Bell, BookOpen, CalendarCheck, FileText, GraduationCap,
   LayoutDashboard, LogOut, PlusCircle, Users, X
 } from "lucide-react";
-
-const API = import.meta.env.VITE_API_URL;
+import { API_URL } from "../api";
 
 export default function TeacherDashboard() {
   const token = localStorage.getItem("token");
@@ -29,8 +28,8 @@ export default function TeacherDashboard() {
   const load = async () => {
     try {
       const [s, n] = await Promise.all([
-        axios.get(`${API}/attendance/students`, { headers }),
-        axios.get(`${API}/notices`, { headers })
+        axios.get(`${API_URL}/attendance/students`, { headers }),
+        axios.get(`${API_URL}/notices`, { headers })
       ]);
       setStudents(s.data);
       setNotices(n.data);
@@ -44,7 +43,7 @@ export default function TeacherDashboard() {
   const markAttendance = async () => {
     if (!selectedStudent) return notify("Select a student first.");
     try {
-      await axios.post(`${API}/attendance/mark`, {
+      await axios.post(`${API_URL}/attendance/mark`, {
         studentId: selectedStudent, date: new Date(), status: attendanceStatus
       }, { headers });
       notify("Attendance saved successfully.");
@@ -56,7 +55,7 @@ export default function TeacherDashboard() {
       return notify("Complete all result fields.");
     }
     try {
-      await axios.post(`${API}/results/add`, {
+      await axios.post(`${API_URL}/results/add`, {
         studentId: selectedStudent, subject: result.subject,
         marks: Number(result.marks), exam: result.exam
       }, { headers });
@@ -68,7 +67,7 @@ export default function TeacherDashboard() {
   const addNotice = async () => {
     if (!notice.title || !notice.description) return notify("Complete all notice fields.");
     try {
-      await axios.post(`${API}/notices/add`, notice, { headers });
+      await axios.post(`${API_URL}/notices/add`, notice, { headers });
       setNotice({ title: "", description: "" });
       await load();
       notify("New notice published.");

@@ -3,8 +3,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { UserRound, Mail, Lock, BookOpen, Hash, ArrowLeft } from "lucide-react";
 import { AuthShell } from "./Login";
-
-const API = import.meta.env.VITE_API_URL ;
+import { API_URL } from "../api";
 
 export default function Signup({ role }) {
   const navigate = useNavigate();
@@ -25,7 +24,7 @@ export default function Signup({ role }) {
 
     setLoading(true);
     try {
-      await axios.post(`${API}/auth/register`, {
+      await axios.post(`${API_URL}/auth/register`, {
         name: form.name.trim(), email: form.email.trim().toLowerCase(),
         password: form.password, role,
         ...(role === "teacher"
