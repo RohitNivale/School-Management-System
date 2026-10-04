@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import { Bell, CalendarCheck, GraduationCap, LogOut, Award, TrendingUp, UserRound } from "lucide-react";
 
-const API = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+const API = import.meta.env.VITE_API_URL ;
 
 export default function StudentDashboard() {
   const token = localStorage.getItem("token");

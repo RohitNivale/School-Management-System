@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { UserRound, Mail, Lock, BookOpen, Hash, ArrowLeft } from "lucide-react";
 import { AuthShell } from "./Login";
 
-const API = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+const API = import.meta.env.VITE_API_URL ;
 
 export default function Signup({ role }) {
   const navigate = useNavigate();
