@@ -43,7 +43,7 @@ export default function TeacherDashboard() {
   const markAttendance = async () => {
     if (!selectedStudent) return notify("Select a student first.");
     try {
-      await axios.post(`${API_URL}/attendance/mark`, {
+      await axios.post(`${API_URL}/api/attendance/mark`, {
         studentId: selectedStudent, date: new Date(), status: attendanceStatus
       }, { headers });
       notify("Attendance saved successfully.");
@@ -55,7 +55,7 @@ export default function TeacherDashboard() {
       return notify("Complete all result fields.");
     }
     try {
-      await axios.post(`${API_URL}/results/add`, {
+      await axios.post(`${API_URL}/api/results/add`, {
         studentId: selectedStudent, subject: result.subject,
         marks: Number(result.marks), exam: result.exam
       }, { headers });
@@ -67,7 +67,7 @@ export default function TeacherDashboard() {
   const addNotice = async () => {
     if (!notice.title || !notice.description) return notify("Complete all notice fields.");
     try {
-      await axios.post(`${API_URL}/notices/add`, notice, { headers });
+      await axios.post(`${API_URL}/api/notices/add`, notice, { headers });
       setNotice({ title: "", description: "" });
       await load();
       notify("New notice published.");
