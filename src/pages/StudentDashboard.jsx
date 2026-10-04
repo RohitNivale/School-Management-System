@@ -18,10 +18,10 @@ export default function StudentDashboard() {
   const load = async () => {
     try {
       const [a, r, p, n] = await Promise.all([
-        axios.get(`${API_URL}/attendance/student/${studentId}`, { headers }),
-        axios.get(`${API_URL}/results/student/${studentId}`, { headers }),
-        axios.get(`${API_URL}/progress/student/${studentId}`, { headers }),
-        axios.get(`${API_URL}/notices`, { headers })
+        axios.get(`${API_URL}/api/attendance/student/${studentId}`, { headers }),
+        axios.get(`${API_URL}/api/results/student/${studentId}`, { headers }),
+        axios.get(`${API_URL}/api/progress/student/${studentId}`, { headers }),
+        axios.get(`${API_URL}/api/notices`, { headers })
       ]);
       setAttendance(a.data);
       setResults(r.data);

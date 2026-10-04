@@ -24,7 +24,7 @@ export default function Signup({ role }) {
 
     setLoading(true);
     try {
-      await axios.post(`${API_URL}/auth/register`, {
+      await axios.post(`${API_URL}/api/auth/register`, {
         name: form.name.trim(), email: form.email.trim().toLowerCase(),
         password: form.password, role,
         ...(role === "teacher"

@@ -28,8 +28,8 @@ export default function TeacherDashboard() {
   const load = async () => {
     try {
       const [s, n] = await Promise.all([
-        axios.get(`${API_URL}/attendance/students`, { headers }),
-        axios.get(`${API_URL}/notices`, { headers })
+        axios.get(`${API_URL}/api/attendance/students`, { headers }),
+        axios.get(`${API_URL}/api/notices`, { headers })
       ]);
       setStudents(s.data);
       setNotices(n.data);
